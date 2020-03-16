@@ -8,7 +8,7 @@ const mongoose = require('mongoose');
 const books = require('./routes/books');
 
 
-mongoose.connect(process.env.LOCAL_DB,  { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect(process.env.DB,  { useNewUrlParser: true, useUnifiedTopology: true });
 
 mongoose.connection.on('connected',() => {
     console.log(`Connected to database`);
