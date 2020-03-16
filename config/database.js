@@ -1,3 +1,4 @@
 module.exports = {
-    connection : 'mongodb://localhost:27017/Books'
+    connection : 'mongodb://localhost:27017/Books',
+    user : 'lkoscak'
 }
