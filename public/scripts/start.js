@@ -63,6 +63,7 @@ class UI{
     }
 }
 
+// Database class for makin request toward backend API
 class Database{
 
     static getBooksFromDatabase(){

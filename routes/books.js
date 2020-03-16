@@ -2,12 +2,14 @@ const express = require('express');
 const router = express.Router();
 const Book = require('../model/book');
 
+// Return all books in database
 router.get('/', (req, res) => {
     Book.getBooks((err, books) => {
         res.json(books);
     })
 });
 
+// Add book to database
 router.post('/', (req, res) => {
     let newBook = new Book({
         title : req.body.title,
@@ -20,6 +22,7 @@ router.post('/', (req, res) => {
     });
 });
 
+// Get book by title
 router.get('/:title', (req, res) => {
     let bookTitle = req.params.title;
     
@@ -28,6 +31,7 @@ router.get('/:title', (req, res) => {
     })
 })
 
+// Delete book by given id
 router.delete('/:id', (req, res) => {
     let bookId = req.params.id;
     Book.deleteBook(bookId, (err) => {
@@ -36,7 +40,5 @@ router.delete('/:id', (req, res) => {
         }
     })
 })
-
-
 
 module.exports = router;

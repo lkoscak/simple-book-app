@@ -17,6 +17,7 @@ const BookSchema = mongoose.Schema({
 // Creating model on which database collection is created by name: books
 const Book = module.exports = mongoose.model('Book', BookSchema);
 
+// Defining methods which work on books collection in mongo db database Books
 module.exports.getBooks = function(callback){
     Book.find(callback);
 }
