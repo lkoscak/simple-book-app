@@ -16,11 +16,10 @@ class UI{
     }
 
     static addBookToList(book){
-        
-
-
+     
         let tableBody = document.querySelector('#book-list');
         let tableRow = document.createElement('tr');
+        tableRow.id = `${book._id}`;
         tableRow.innerHTML = `
             <td>${book.title}</td>
             <td>${book.author}</td>
@@ -88,6 +87,17 @@ class Database{
         .then(data => UI.addBookToList(data))
         .catch(err => console.log('Error adding book to database'));
     }
+
+    static deleteBookFromDatabase(element){
+
+        fetch(`books/${element.parentElement.parentElement.id}`,{
+            method:'DELETE'
+        })
+        .then(console.log('Book deleted from database'))
+        .then(UI.deleteBook(element));
+        
+    }
+
 }
 
 
@@ -120,4 +130,5 @@ document.querySelector('#book-form').addEventListener('submit',(e) => {
 
 // Remove a book from table
 
-document.querySelector('#book-list').addEventListener('click', e => UI.deleteBook(e.target));
+document.querySelector('#book-list').addEventListener('click', 
+    e => Database.deleteBookFromDatabase(e.target));

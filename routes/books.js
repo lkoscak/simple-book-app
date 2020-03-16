@@ -28,6 +28,15 @@ router.get('/:title', (req, res) => {
     })
 })
 
+router.delete('/:id', (req, res) => {
+    let bookId = req.params.id;
+    Book.deleteBook(bookId, (err) => {
+        if(err !== null){
+            res.json({message:'Error while deleting from database'});
+        }
+    })
+})
+
 
 
 module.exports = router;

@@ -34,3 +34,7 @@ module.exports.addNewBook = function(book, callback){
     book.save(callback);
 }
 
+module.exports.deleteBook = function(bookId, callback){
+    Book.deleteOne( {_id:bookId}, callback);
+}
+
