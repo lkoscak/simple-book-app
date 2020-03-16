@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.1/css/all.css" integrity="sha384-v8BU367qNbs/aIZIxuivaU55N5GPF89WBerHoGA4QTcbUjYiLQtKdrfXnqAcXyTv" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.4.1/lux/bootstrap.min.css">
+    <title>Simple book app</title>
+</head>
+<body>
+    <div class="container mt-4">
+        <h1 class="display-5 text-center mt-5 mb-5">
+            <i class="fa fa-book text-warning"></i> 
+            Simple<span class="text-danger"> Book App</span>
+        </h1>
+        <form id="book-form">
+            <div class="form-group">
+                <label for="title">Book title</label>
+                <input type="text" id="title" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="author">Book author</label>
+                <input type="text" id="author" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="description">Book description</label>
+                <textarea name="description" id="description" cols="20" rows="5" class="form-control"></textarea>
+            </div>
+            <input type="submit" value="Add Book" class="btn btn-warning btn-block">
+        </form>
+        <table class="table table-striped mt-5">
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Author</th>
+                    <th>Description</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody id="book-list"></tbody>
+        </table>
+    </div>
+
+    <script src="../scripts/start.js"></script>
+</body>
+</html>

@@ -20,14 +20,14 @@ mongoose.connection.on('error', (error) => {
 
 const app = express();
 
-app.use(express.static(path.join(__dirname,'public')));
+app.use(express.static(path.join(__dirname,'public','views')));
 app.use(bodyParser.json());
 app.use('/books', books);
 
 const port = process.env.PORT || 3000;
 
 app.get('/', (req, res) => {
-    res.send('Home page of simple-book-app');
+    res.sendFile('index.html');
 })
 
 
