@@ -5,6 +5,13 @@ const bodyParser = require('body-parser');
 const path = require('path');
 const mongoose = require('mongoose');
 const books = require('./routes/books');
+const database = require('./config/database');
+
+mongoose.connect(database.connection,  { useNewUrlParser: true, useUnifiedTopology: true });
+
+mongoose.connection.on('connected',() => {
+    console.log(`Connected to database ${database.connection}`);
+});
 
 const app = express();
 
