@@ -1,4 +1,4 @@
-# simple-boook-app
+# simple-book-app
 Simple book adding and viewing application using Node JS with Express framework and Mongo DB.
 
 # start app 
