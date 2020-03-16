@@ -20,14 +20,15 @@ mongoose.connection.on('error', (error) => {
 
 const app = express();
 
-app.use(express.static(path.join(__dirname,'public','views')));
+app.use(express.static(path.join(__dirname,'public')));
+
 app.use(bodyParser.json());
 app.use('/books', books);
 
 const port = process.env.PORT || 3000;
 
 app.get('/', (req, res) => {
-    res.sendFile('index.html');
+    res.sendFile(path.join(__dirname,'public','views','index.html'));
 })
 
 

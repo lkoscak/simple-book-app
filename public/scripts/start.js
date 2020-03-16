@@ -10,23 +10,15 @@ class Book{
 // UI static class to handle UI actions
 class UI{
 
-    static displayBooks(){
-
-        const storedBooks =[
-            {
-                title:'HBook1',
-                author:'HAuthor1',
-                description:'Description of HBook1'
-            }
-        ];
-
-        let books = storedBooks;
+    static displayBooks(books){
 
         books.forEach((book => UI.addBookToList(book)));
     }
 
     static addBookToList(book){
         
+
+
         let tableBody = document.querySelector('#book-list');
         let tableRow = document.createElement('tr');
         tableRow.innerHTML = `
@@ -72,9 +64,36 @@ class UI{
     }
 }
 
+class Database{
+
+    static getBooksFromDatabase(){
+        
+        fetch('books')
+        .then(res => res.json())
+        .then(data => UI.displayBooks(data))
+        .catch(err => console.log('Error occured while trying to get books from database'));
+
+    }
+
+    static addBookToDatabse(book){
+
+        fetch('books',{
+            method:'POST',
+            headers:{
+                'Content-type':'application/json'
+            },
+            body: JSON.stringify(book)
+        })
+        .then(res => res.json())
+        .then(data => UI.addBookToList(data))
+        .catch(err => console.log('Error adding book to database'));
+    }
+}
+
+
 // Populate table with books
 
-document.addEventListener('DOMContentLoaded', UI.displayBooks());
+document.addEventListener('DOMContentLoaded', Database.getBooksFromDatabase());
 
 // Add a new book to table
 
@@ -91,7 +110,7 @@ document.querySelector('#book-form').addEventListener('submit',(e) => {
 
         let book = new Book(title, author, description);
 
-        UI.addBookToList(book);
+        Database.addBookToDatabse(book);
         UI.clearInputFields();
 
         UI.showAlert('Book is sucesfully added!', 'success');
