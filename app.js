@@ -13,6 +13,10 @@ mongoose.connection.on('connected',() => {
     console.log(`Connected to database ${database.connection}`);
 });
 
+mongoose.connection.on('error', (error) => {
+    console.log(`Connection error ${error}`);
+});
+
 const app = express();
 
 app.use(express.static(path.join(__dirname,'public')));
