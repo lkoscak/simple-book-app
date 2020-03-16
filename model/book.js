@@ -31,3 +31,7 @@ module.exports.getBookByTitle = function(bookTitle, callback){
     Book.findOne(query, callback);
 }
 
+module.exports.addNewBook = function(book, callback){
+    book.save(callback);
+}
+

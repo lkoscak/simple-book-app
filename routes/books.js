@@ -8,6 +8,18 @@ router.get('/', (req, res) => {
     })
 });
 
+router.post('/', (req, res) => {
+    let newBook = new Book({
+        title : req.body.title,
+        author : req.body.author,
+        description : req.body.description
+    });
+
+    Book.addNewBook(newBook, (err, book) => {
+        res.json(book);
+    });
+});
+
 router.get('/:title', (req, res) => {
     let bookTitle = req.params.title;
     
@@ -15,5 +27,7 @@ router.get('/:title', (req, res) => {
         res.json(book);
     })
 })
+
+
 
 module.exports = router;
