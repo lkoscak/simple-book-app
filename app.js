@@ -1,20 +1,21 @@
 // jshint esversion:6
+require('dotenv').config();
 
 const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
 const mongoose = require('mongoose');
 const books = require('./routes/books');
-const database = require('./config/database');
 
-mongoose.connect(database.connection,  { useNewUrlParser: true, useUnifiedTopology: true });
+
+mongoose.connect(process.env.LOCAL_DB,  { useNewUrlParser: true, useUnifiedTopology: true });
 
 mongoose.connection.on('connected',() => {
-    console.log(`Connected to database ${database.connection}`);
+    console.log(`Connected to database`);
 });
 
 mongoose.connection.on('error', (error) => {
-    console.log(`Connection error ${error}`);
+    console.log(`Connection error`);
 });
 
 const app = express();

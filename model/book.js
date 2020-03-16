@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-const database = require('../config/database');
 
 // Defining Book schema
 
