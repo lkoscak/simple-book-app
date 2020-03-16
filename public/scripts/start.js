@@ -35,6 +35,8 @@ class UI{
         if(element.classList.contains('deleteBook')){
             element.parentElement.parentElement.remove();
         }
+
+        UI.showAlert('Book deleted', 'success');
     }
 
     static clearInputFields(){
