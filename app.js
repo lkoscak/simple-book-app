@@ -18,7 +18,7 @@ mongoose.connect(process.env.DB,  { useNewUrlParser: true, useUnifiedTopology: t
 // Configuring express app
 const app = express();
 
-app.use(express.static(path.join(__dirname,'public')));
+app.use(express.static(path.join(__dirname,'build')));
 
 app.use(bodyParser.json());
 app.use('/books', books);
@@ -27,7 +27,7 @@ const port = process.env.PORT || 9000;
 
 // Home page route
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname,'public','views','index.html'));
+    res.sendFile(path.join(__dirname,'build','index.html'));
 })
 
 // Listening at port
