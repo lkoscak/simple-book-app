@@ -1,6 +1,8 @@
 # configuration
 config/
 
+# client 
+
 # Logs
 logs
 *.log
