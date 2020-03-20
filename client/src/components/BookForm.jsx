@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
+import Alert from './Alert';
 
-function BookForm(){
+function BookForm(props){
 
     const [book, setBook] = useState({
         title:"",
@@ -8,11 +9,36 @@ function BookForm(){
         description:""
     });
 
+    const [validationError, setValidationError] = useState(false);
+    const [bookSaved, setBookSaved] = useState(false);
+
+    const [submitDisabled, setSubmitDisabled] = useState(false);
+
     function inputChanged(event){
         const {value, name} = event.target;
         setBook(prevValue => { return{
             ...prevValue, [name]:value
         }});
+    }
+
+    function cleanUpFields(){
+        setBook({
+            title:"",
+            author:"",
+            description:""
+        });
+    }
+
+    function validateInput(event){
+        if(book.title==='' || book.author==='' || book.description===''){
+            setValidationError(true);
+            setSubmitDisabled(true);
+            setTimeout(() => {
+                setValidationError(false);
+                setSubmitDisabled(false);
+            },2000);
+        }else saveBook(event);
+        event.preventDefault();
     }
 
     function saveBook(event){
@@ -24,15 +50,26 @@ function BookForm(){
             body: JSON.stringify(book)
         })
         .then(res => res.json())
-        .then(data => console.log(data))
+        .then(data => props.addBook(data))
+        .then(cleanUpFields())
+        .then(() => {
+            setBookSaved(true);
+            setTimeout(() => setBookSaved(false),2000);
+        })
         .catch(err => console.log('Error adding book to database'));
 
-        event.preventDefault();
-        
     }
 
     return(
-        <form onSubmit={saveBook}>
+        <form onSubmit={validateInput}>
+            {validationError && <Alert
+                styleClass="warning"
+                message="Please fill all the input fields"
+            />}
+             {bookSaved && <Alert
+                styleClass="success"
+                message="Book is saved!"
+            />}
             <div className="form-group">
                 <label for="title">Book title</label>
                 <input type="text" name="title" className="form-control"  value={book.title} onChange={inputChanged}/>
@@ -45,7 +82,7 @@ function BookForm(){
                 <label for="description">Book description</label>
                 <textarea name="description" cols="20" rows="5" className="form-control" value={book.description} onChange={inputChanged}/>
             </div>
-            <input id="book-submit" type="submit" value="Add Book" className="btn btn-warning btn-block"/>
+            <input disabled={submitDisabled} type="submit" value="Add Book" className="btn btn-warning btn-block"/>
         </form>
     );
 }
