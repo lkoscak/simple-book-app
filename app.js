@@ -8,15 +8,12 @@ const mongoose = require('mongoose');
 const books = require('./routes/books');
 
 // Connecting to database and checking for status
-mongoose.connect(process.env.DB,  { useNewUrlParser: true, useUnifiedTopology: true });
-
-mongoose.connection.on('connected',() => {
-    console.log(`Connected to database`);
+mongoose.connect(process.env.DB,  { useNewUrlParser: true, useUnifiedTopology: true })
+.then(() => console.log("Connected"))
+.catch(err => {
+  console.log("Not Connected: ", err);
 });
 
-mongoose.connection.on('error', (error) => {
-    console.log(`Connection error`);
-});
 
 // Configuring express app
 const app = express();

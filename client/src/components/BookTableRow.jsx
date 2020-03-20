@@ -3,11 +3,13 @@ import DeleteOutlineIcon from '@material-ui/icons/DeleteOutline';
 
 function BookTableRow(props){
     return (
-        <tr key={props.id} id={props.id}>
+        <tr>
             <td>{props.title}</td>
             <td>{props.author}</td>
             <td>{props.description}</td>
-            <td><a className="btn btn-warning"><DeleteOutlineIcon fontSize="small"/></a></td>
+            <td><button onClick={() => props.deleteBook(props.id)} 
+            className="btn btn-warning"><DeleteOutlineIcon fontSize="small"/>
+            </button></td>
         </tr>
     );
 }

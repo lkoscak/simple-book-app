@@ -8,7 +8,7 @@ function getCurrentYear(){
 
     return(
         <footer className="page-footer font-small" style={{backgroundColor:"#ffa34d"}}>
-            <div className="footer-copyright text-center py-3 text-primary">© {getCurrentYear()} by Me</div>
+            <div className="footer-copyright text-center py-3" style={{color:"white"}}>© {getCurrentYear()} by Me</div>
         </footer>
     );
 }
