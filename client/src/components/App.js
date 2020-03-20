@@ -1,5 +1,10 @@
 import React, {useState} from 'react';
 
+import Title from './Title';
+import Form from './BookForm';
+import Table from './BookTable';
+import {Footer} from './Footer';
+
 function App(){
 
     const [books, setBooks] = useState([]);
@@ -11,9 +16,12 @@ function App(){
     React.useEffect(() => fetchBooks());
 
     return (
-        <ul>
-            {books.map(book => <li key={book._id}>{book.title}</li>)}
-        </ul>
+        <div>
+            <Title/>
+            <Form/>
+            <Table/>
+            <Footer/>
+        </div>
     );
 }
 
