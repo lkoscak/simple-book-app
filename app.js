@@ -7,7 +7,7 @@ const path = require('path');
 const mongoose = require('mongoose');
 const books = require('./routes/books');
 
-
+// Connecting to database and checking for status
 mongoose.connect(process.env.DB,  { useNewUrlParser: true, useUnifiedTopology: true });
 
 mongoose.connection.on('connected',() => {
@@ -18,6 +18,7 @@ mongoose.connection.on('error', (error) => {
     console.log(`Connection error`);
 });
 
+// Configuring express app
 const app = express();
 
 app.use(express.static(path.join(__dirname,'public')));
@@ -25,13 +26,14 @@ app.use(express.static(path.join(__dirname,'public')));
 app.use(bodyParser.json());
 app.use('/books', books);
 
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 9000;
 
+// Home page route
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname,'public','views','index.html'));
 })
 
-
+// Listening at port
 app.listen(port, ()=>{
     console.log(`Listening on port ${port}`);
 })
