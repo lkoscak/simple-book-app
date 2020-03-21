@@ -16,7 +16,6 @@ function App(){
     React.useEffect(() => fetchBooks(), []);
 
     function removeBookFromTable(bookId){
-        console.log(bookId);
         setBooks(books.filter(book => book._id!==bookId));
     }
 
